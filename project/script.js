@@ -24,7 +24,7 @@ document.getElementById("generateMarkdownBtn").addEventListener("click", async f
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer sk-6fcfed15ba0243dbb9c86cbf2316ca50"
+        "Authorization": "Bearer api_key" // Replace with your actual API key!!!
       },
       body: JSON.stringify({
         model: "qwen-plus",
