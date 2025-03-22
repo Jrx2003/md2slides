@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Markdown Slide Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Markdown Slide Generator</h1>
+
+  <section id="aiSection">
+    <h2>Generate Markdown from Text</h2>
+    <button id="useSampleBtn0">Use Sample Text</button>
+    <textarea id="aiInput" placeholder="Paste any text here"></textarea><br>
+    <button id="generateMarkdownBtn" type="button">Generate Markdown</button>
+  </section>
+
+  <section id="convertSection">
+    <h2>Markdown Input</h2>
+    <button id="useSampleBtn1">Use Sample Markdown</button>
+    <!-- The Markdown textarea is inside the form to ensure it gets submitted -->
+    <form id="convertForm" action="../cgi-bin/convert.awk" method="post" target="_blank">
+      <textarea id="mdInput" name="md" placeholder="Enter Markdown text separated by '---'" rows="10"></textarea><br>
+      <h2>Conversion Options</h2>
+      <label>Conversion Type:
+        <input type="radio" name="type" value="reveal" checked> Reveal.js
+        <input type="radio" name="type" value="beamer"> LaTeX Beamer
+      </label><br>
+      <label>Theme:
+        <select name="theme" id="themeSelect">
+          <!-- For Reveal.js, these options correspond to available themes; -->
+          <option value="white">white</option>
+          <option value="black">black</option>
+          <option value="league">league</option>
+          <option value="beige">beige</option>
+          <option value="default">default</option>
+        </select>
+      </label><br>
+      <label>Animation Style:
+        <select name="animation" id="animationSelect">
+          <option value="slide">slide</option>
+          <option value="fade">fade</option>
+          <option value="convex">convex</option>
+          <option value="concave">concave</option>
+          <option value="zoom">zoom</option>
+        </select>
+      </label><br>
+      <button type="submit">Generate Slides</button>
+    </form>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
