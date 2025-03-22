@@ -5,16 +5,16 @@ The `md2slides` project is a tool designed to convert Markdown content into HTML
 ## Folder Structure
 
 md2slides
-©À©¤©¤ README.md          # Project documentation (this file)
-©À©¤©¤ cgi-bin
-©¦   ©¸©¤©¤ convert.awk    # Core script for Markdown to HTML slide conversion
-©¸©¤©¤ project
-    ©À©¤©¤ index.html     # Main entry point for the web interface
-    ©À©¤©¤ sample_md.md   # Sample Markdown file for testing
-    ©À©¤©¤ sample_pic.jpg # Sample image used in the project
-    ©À©¤©¤ sample_text.txt# Sample text file for reference
-    ©À©¤©¤ script.js      # JavaScript file for additional functionality
-    ©¸©¤©¤ style.css      # CSS file for custom styling
+â”œâ”€â”€ README.md          # Project documentation (this file)
+â”œâ”€â”€ cgi-bin
+â”‚   â”œâ”€â”€ convert.awk    # Core script for Markdown to HTML slide conversion
+â”œâ”€â”€ project
+â”‚   â”œâ”€â”€ index.html     # Main entry point for the web interface
+â”‚   â”œâ”€â”€ sample_md.md   # Sample Markdown file for testing
+â”‚   â”œâ”€â”€ sample_pic.jpg # Sample image used in the project
+â”‚   â”œâ”€â”€ sample_text.txt# Sample text file for reference
+â”‚   â”œâ”€â”€ script.js      # JavaScript file for additional functionality
+â”‚   â”œâ”€â”€ style.css      # CSS file for custom styling
 
 ## File Descriptions
 
