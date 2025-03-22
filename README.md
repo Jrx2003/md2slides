@@ -1,6 +1,6 @@
 # md2slides Project Documentation
 
-The `md2slides` project is a tool designed to convert Markdown content into HTML slides using Reveal.js. Below is an overview of the folder structure and the functionality of each file.
+The `md2slides` project is a tool designed to convert Markdown content into HTML slides using Reveal.js. Below is an overview of the folder structure and the functionality of each file. You can try it through this web interface: [md2slides](http://eecslab-22.case.edu/~jxx583/project/).
 
 ## Folder Structure
 
