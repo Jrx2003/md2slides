@@ -30,13 +30,30 @@ md2slides
 │   ├── style.css      # CSS file for custom styling
 ```
 
-## File Descriptions
+## 🛠️ To Get Started
+
+To quickly test the basic functionality:
+
+1. Click **"Use Sample Markdown"**
+2. Select your preferred **theme** and **animation**
+3. Click **"Generate Slides"**
+
+To try out the **AI assistant feature**:
+
+1. Click **"Use Sample Text"**
+2. Click **"Generate Markdown"**
+3. Finally, click **"Generate Slides"**
+
+When entering your own text, please follow the placeholder instructions to ensure correct formatting.
+
+
+## Detailed File Descriptions
 
 ### 1. `README.md`
 
 This file provides an overview of the project, including its purpose, structure, and usage instructions.
 
-### 2. `cgi-bin/convert.awk`
+### 2. `cgi-bin/convert.awk` (important!!!)
 
 - A core script written in `awk` that processes HTTP requests (GET or POST).
 - Converts user-submitted Markdown content into HTML slides using Reveal.js.
@@ -50,7 +67,7 @@ This file provides an overview of the project, including its purpose, structure,
 - The main HTML file for the web interface.
 - Likely serves as the front-end for users to upload Markdown files or input content directly.
 
-### 4. `project/sample_md.md`
+### 4. `project/sample_md.md` (4-6 can be changed for your preference)
 
 - A sample Markdown file provided for testing the conversion functionality.
 - Can be used as an example to understand the expected input format.
@@ -64,12 +81,12 @@ This file provides an overview of the project, including its purpose, structure,
 
 - A sample plain text file for reference or testing purposes.
 
-### 7. `project/script.js`
+### 7. `project/script.js` (Integrated Sample Using and AI features)
 
 - A JavaScript file that likely adds interactivity or functionality to the web interface.
 - Could handle form submissions, dynamic updates, or other client-side logic.
 
-### 8. `project/style.css`
+### 8. `project/style.css` (extra)
 
 - A CSS file for custom styling of the web interface.
 - May include styles for the input form, buttons, or other UI elements.
