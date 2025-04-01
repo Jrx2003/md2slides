@@ -16,7 +16,19 @@ You can try it through this web interface: [md2slides](http://eecslab-22.case.ed
 
 ## Folder Structure
 
-<pre lang="markdown"> <code>```text md2slides ├── README.md # Project documentation (this file) ├── cgi-bin │ └── convert.awk # Core script for Markdown to HTML slide conversion ├── project │ ├── index.html # Main entry point for the web interface │ ├── sample_md.md # Sample Markdown file for testing │ ├── sample_pic.jpg # Sample image used in the project │ ├── sample_text.txt# Sample text file for reference │ ├── script.js # JavaScript file for additional functionality │ └── style.css # CSS file for custom styling ```</code> </pre>
+```
+md2slides
+├── README.md          # Project documentation (this file)
+├── cgi-bin
+│   ├── convert.awk    # Core script for Markdown to HTML slide conversion
+├── project
+│   ├── index.html     # Main entry point for the web interface
+│   ├── sample_md.md   # Sample Markdown file for testing
+│   ├── sample_pic.jpg # Sample image used in the project
+│   ├── sample_text.txt# Sample text file for reference
+│   ├── script.js      # JavaScript file for additional functionality
+│   ├── style.css      # CSS file for custom styling
+```
 
 ## File Descriptions
 
