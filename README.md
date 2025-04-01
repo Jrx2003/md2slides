@@ -65,7 +65,7 @@ This file provides an overview of the project, including its purpose, structure,
 - The main HTML file for the web interface.
 - Likely serves as the front-end for users to upload Markdown files or input content directly.
 
-### 4. `project/sample_md.md` (4-6 can be changed for your preference)
+### 4. `project/sample_md.md` (4-6 can be changed based on your preference)
 
 - A sample Markdown file provided for testing the conversion functionality.
 - Can be used as an example to understand the expected input format.
