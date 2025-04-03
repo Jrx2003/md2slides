@@ -1,6 +1,7 @@
 # md2slides Project Documentation
 
 Web interface: [md2slides](http://eecslab-22.case.edu/~jxx583/project/) **(CWRU VPN REQUIRED!)**
+
 Demo Video: [CSDS285 Project Checkpoint Demo Video --- Jerry Xu](https://www.youtube.com/watch?v=jkHKmzajBRE)
 
 The `md2slides` project is a tool designed to convert Markdown content into HTML/PDF slides using Reveal.js/LaTex Beamer. 
