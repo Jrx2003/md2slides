@@ -3,52 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <title>Markdown Slide Generator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Markdown Slide Generator</h1>
-
-  <section id="aiSection">
-    <h2>Generate Markdown from Text</h2>
-    <button id="useSampleBtn0">Use Sample Text</button>
-    <textarea id="aiInput" placeholder="Paste any text here"></textarea><br>
-    <button id="generateMarkdownBtn" type="button">Generate Markdown</button>
-  </section>
-
-  <section id="convertSection">
-    <h2>Markdown Input</h2>
-    <button id="useSampleBtn1">Use Sample Markdown</button>
-    <!-- The Markdown textarea is inside the form to ensure it gets submitted -->
-    <form id="convertForm" action="../cgi-bin/convert.awk" method="post" target="_blank">
-      <textarea id="mdInput" name="md" placeholder="Enter Markdown text separated by '---'" rows="10"></textarea><br>
-      <h2>Conversion Options</h2>
-      <label>Conversion Type:
-        <input type="radio" name="type" value="reveal" checked> Reveal.js
-        <input type="radio" name="type" value="beamer"> LaTeX Beamer
-      </label><br>
-      <label>Theme:
-        <select name="theme" id="themeSelect">
-          <!-- For Reveal.js, these options correspond to available themes; -->
-          <option value="white">white</option>
-          <option value="black">black</option>
-          <option value="league">league</option>
-          <option value="beige">beige</option>
-          <option value="default">default</option>
-        </select>
-      </label><br>
-      <label>Animation Style:
-        <select name="animation" id="animationSelect">
-          <option value="slide">slide</option>
-          <option value="fade">fade</option>
-          <option value="convex">convex</option>
-          <option value="concave">concave</option>
-          <option value="zoom">zoom</option>
-        </select>
-      </label><br>
-      <button type="submit">Generate Slides</button>
-    </form>
-  </section>
-
+  <div class="container">
+    <header class="my-4 text-center">
+      <h1>Markdown Slide Generator</h1>
+      <p>
+        <a href="https://github.com/Jrx2003/md2slides" target="_blank">GitHub</a> | 
+        <a href="https://youtu.be/jkHKmzajBRE" target="_blank">Video</a> | 
+        <a href="https://revealjs.com/" target="_blank">Reveal.js</a> | 
+        <a href="https://latex-beamer.com/" target="_blank">LaTex Beamer</a>
+      </p>
+    </header>
+    
+    <section id="instructions" class="mb-4">
+      <div class="alert alert-info">
+        <h4 class="alert-heading">Instructions</h4>
+        <p>
+          To quickly test the basic functionality, click the "Use Sample Markdown" button,
+          select your theme and animation, then click "Generate Slides".
+        </p>
+        <p>
+          For the AI assistant feature, click "Use Sample Text", then "Generate Markdown",
+          and finally "Generate Slides".
+        </p>
+        <hr>
+        <p class="mb-0">
+          When entering your own text, please follow the placeholder instructions to ensure correct formatting.
+        </p>
+      </div>
+    </section>
+    
+    <section id="aiSection" class="mb-4">
+      <h2>Generate Markdown from Text</h2>
+      <div class="form-group">
+        <button id="useSampleBtn0" type="button" class="btn btn-secondary mb-2">Use Sample Text</button>
+        <textarea id="aiInput" class="form-control" placeholder="Paste any text here" rows="5"></textarea>
+      </div>
+      <button id="generateMarkdownBtn" type="button" class="btn btn-primary">Generate Markdown</button>
+    </section>
+    
+    <section id="convertSection" class="mb-4">
+      <h2>Markdown Input</h2>
+      <div class="form-group">
+        <button id="useSampleBtn1" type="button" class="btn btn-secondary mb-2">Use Sample Markdown</button>
+        <!-- The Markdown textarea is inside the form to ensure it gets submitted -->
+        <form id="convertForm" action="../cgi-bin/convert.awk" method="post" target="_blank">
+          <textarea id="mdInput" name="md" class="form-control" placeholder="Enter Markdown text separated by '---'" rows="10"></textarea>
+          <h2 class="mt-3">Conversion Options</h2>
+          <div class="form-group">
+            <label>Conversion Type:</label>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="type" value="reveal" checked class="form-check-input" id="typeReveal">
+              <label class="form-check-label" for="typeReveal">Reveal.js</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="type" value="beamer" class="form-check-input" id="typeBeamer">
+              <label class="form-check-label" for="typeBeamer">LaTeX Beamer</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="themeSelect">Theme(Reveal.js):</label>
+            <select name="theme" id="themeSelect" class="form-control">
+              <option value="white">white</option>
+              <option value="black">black</option>
+              <option value="league">league</option>
+              <option value="beige">beige</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="animationSelect">Animation(Reveal.js):</label>
+            <select name="animation" id="animationSelect" class="form-control">
+              <option value="slide">slide</option>
+              <option value="fade">fade</option>
+              <option value="convex">convex</option>
+              <option value="concave">concave</option>
+              <option value="zoom">zoom</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="themeSelect">Theme(Beamer):</label>
+            <select name="beamerTheme" id="themeSelect" class="form-control">
+              <option value="default">default</option>
+              <option value="AnnArbor">AnnArbor</option>
+              <option value="Antibes">Antibes</option>
+              <option value="Madrid">Madrid</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Generate Slides</button>
+        </form>
+      </div>
+    </section>
+  </div>
+  
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
