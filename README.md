@@ -4,7 +4,7 @@ The `md2slides` project is a tool designed to convert Markdown content into HTML
 
 Web interface: [md2slides](http://eecslab-22.case.edu/~jxx583/project/) **(CWRU VPN REQUIRED!)**
 
-Demo Video: [CSDS285 Project Checkpoint Demo Video --- Jerry Xu](https://www.youtube.com/watch?v=jkHKmzajBRE)
+Demo Video: [CSDS285 Project Checkpoint Demo Video --- Jerry Xu](https://youtu.be/hp-8cZ9AwBg)
 
 ## Project Overview
 
