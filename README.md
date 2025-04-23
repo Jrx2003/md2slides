@@ -10,6 +10,19 @@ GitHub Repository: [md2slides](https://github.com/Jrx2003/md2slides)
 
 **You can also read this README file in the GitHub repository for better formatting.**
 
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [To Get Started](#to-get-started)
+3. [Example I/O and Edge Cases](#example-io-and-edge-cases)
+   - [Typical Markdown Input and Output](#1-typical-markdown-input-and-output)
+   - [Edge Cases](#2-edge-cases)
+4. [Folder Structure](#folder-structure)
+5. [Important File Descriptions](#important-file-descriptions)
+6. [Usage Instructions](#usage-instructions)
+7. [Future Improvements](#future-improvements)
+
+---
+
 ## Project Overview
 
 This project, markdown to slides, is a convenient tool that lets you generate slides using simple markdown. If you ever receive an urgent task that requires you to prepare a presentation in five minutes, you should give this a try. If you're tired of having GPT generate slide content and then painstakingly copying and formatting it in PowerPoint, you should try this. And if you want clean, themed slides without having to learn the complex syntax of reveal.js or LaTeX Beamer, then this is definitely for you.
@@ -20,7 +33,7 @@ The `script.js` file in the project implements several additional features, such
 
 ---
 
-## 🛠️ To Get Started
+## To Get Started
 
 To quickly test the basic functionality:
 
