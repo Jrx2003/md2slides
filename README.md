@@ -4,11 +4,11 @@ The `md2slides` project is a tool designed to convert Markdown content into HTML
 
 Web interface: [md2slides](http://eecslab-22.case.edu/~jxx583/project/) **(CWRU VPN REQUIRED!)**
 
-Demo Video: [CSDS285 Project Checkpoint Demo Video --- Jerry Xu](https://youtu.be/hn3GUFsApkQ)
+Demo Video: [CSDS285 Project Checkpoint Demo Video --- Jerry Xu](https://www.youtube.com/watch?v=jkHKmzajBRE)
 
 ## Project Overview
 
-The goal of this project is to create a script that can quickly generate slides from Markdown files, with convenient keyboard shortcuts to select themes and animations. The core of this functionality lies in the CGI script files within the project, which process and adjust Markdown text to make it compatible with both **Reveal.js** and **LaTeX Beamer** formats. This part of the project also best reflects the skills I’ve gained in the **CSDS285** course regarding scripting languages.
+The goal of this project is to create a script that can quickly generate slides from Markdown files, with convenient keyboard shortcuts to select themes and animations. The core of this functionality lies in the CGI script files within the project, which process and adjust Markdown text to make it compatible with both **Reveal.js** and **LaTeX Beamer** formats. This part of the project also best reflects the skills I鈥檝e gained in the **CSDS285** course regarding scripting languages.
 
 The `script.js` file in the project implements several additional features, such as inserting sample input with a button click. For users who are not familiar with Markdown, I referred to the documentation of LLM **Qwen-Plus** and integrated its API to help generate compliant Markdown documents for testing. This makes the project much more beginner-friendly, even though this part is not a requirement for CSDS285 nor the main focus of the project.
 
@@ -34,6 +34,7 @@ When entering your own text, please follow the placeholder instructions to ensur
 
 ```
 md2slides
+<<<<<<< HEAD
 ├── README.md          # Project documentation (this file)
 ├── cgi-bin
 │   ├── convert.awk    # Core script for Markdown to HTML slide conversion
@@ -44,6 +45,18 @@ md2slides
 │   ├── sample_text.txt# Sample text file for reference
 │   ├── script.js      # JavaScript file for additional functionality
 │   ├── style.css      # CSS file for custom styling
+=======
+鈹溾攢鈹€ README.md          # Project documentation (this file)
+鈹溾攢鈹€ cgi-bin
+鈹�   鈹溾攢鈹€ convert.awk    # Core script for Markdown to HTML slide conversion
+鈹溾攢鈹€ project
+鈹�   鈹溾攢鈹€ index.html     # Main entry point for the web interface
+鈹�   鈹溾攢鈹€ sample_md.md   # Sample Markdown file for testing
+鈹�   鈹溾攢鈹€ sample_pic.jpg # Sample image used in the project
+鈹�   鈹溾攢鈹€ sample_text.txt# Sample text file for reference
+鈹�   鈹溾攢鈹€ script.js      # JavaScript file for additional functionality
+鈹�   鈹溾攢鈹€ style.css      # CSS file for custom styling
+>>>>>>> b13f980a1a0d8edceedf784a214e8e1132acd6b3
 ```
 
 ## Detailed File Descriptions
