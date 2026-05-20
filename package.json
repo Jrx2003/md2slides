@@ -1,0 +1,9 @@
+{
+  "name": "md2slides",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "serve": "python3 -m http.server 5173 --directory project"
+  }
+}

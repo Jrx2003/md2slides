@@ -1,24 +1,367 @@
+:root {
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --panel-strong: #f9fafc;
+  --border: #d8dee9;
+  --text: #182233;
+  --muted: #677386;
+  --brand: #155eef;
+  --brand-strong: #0f4bd3;
+  --danger: #b42318;
+  --shadow: 0 16px 44px rgba(24, 34, 51, 0.08);
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  line-height: 1.6;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
 }
 
-textarea {
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px 28px 18px;
+}
+
+.eyebrow {
+  margin: 0 0 2px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.toplinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.toplinks a {
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--panel);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.toplinks a:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(340px, 0.92fr) 280px minmax(420px, 1.08fr);
+  gap: 16px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 28px 28px;
+}
+
+.workspace,
+.controls,
+.preview-panel {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.workspace,
+.preview-panel {
+  display: flex;
+  min-height: calc(100vh - 140px);
+  flex-direction: column;
+}
+
+.panel-header {
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+}
+
+.panel-header p,
+.status-line {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.button-row,
+.button-grid {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.button {
+  min-height: 36px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.button.primary {
+  color: #ffffff;
+  background: var(--brand);
+}
+
+.button.primary:hover {
+  background: var(--brand-strong);
+}
+
+.button.secondary {
+  color: var(--text);
+  border-color: var(--border);
+  background: var(--panel-strong);
+}
+
+.button.secondary:hover,
+.button.ghost:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.button.ghost {
+  color: var(--muted);
+  border-color: transparent;
+  background: transparent;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.markdown-editor,
+.notes-editor {
   width: 100%;
-  margin-bottom: 10px;
+  resize: none;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  background: transparent;
+}
+
+.markdown-editor {
+  flex: 1;
+  min-height: 560px;
+  padding: 18px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 14px;
+  line-height: 1.65;
 }
 
-section {
-  margin-bottom: 20px;
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-self: start;
+  overflow: hidden;
 }
 
-h1, h2 {
-  color: #333;
+.control-group {
+  display: grid;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  padding: 16px;
+}
+
+.control-group:last-child {
+  border-bottom: 0;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel-strong);
+  padding: 3px;
+}
+
+.segment {
+  min-height: 34px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.segment.active {
+  color: var(--brand);
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(24, 34, 51, 0.12);
 }
 
 label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+select {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  background: #ffffff;
+  padding: 8px 10px;
+}
+
+.notes-editor {
+  min-height: 120px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: #ffffff;
+  padding: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.status-line.error {
+  color: var(--danger);
+}
+
+.preview-frame-wrap {
+  flex: 1;
+  min-height: 560px;
+  background: #111827;
+}
+
+.preview-frame-wrap iframe {
   display: block;
-  margin: 5px 0;
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  border: 0;
+  background: #ffffff;
+}
+
+.code-preview {
+  flex: 1;
+  min-height: 560px;
+  margin: 0;
+  overflow: auto;
+  padding: 18px;
+  color: #d8dee9;
+  background: #111827;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 1120px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace,
+  .preview-panel {
+    min-height: 520px;
+  }
+
+  .controls {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px 16px 14px;
+  }
+
+  .toplinks {
+    justify-content: flex-start;
+  }
+
+  .app-shell {
+    padding: 0 16px 20px;
+  }
+
+  .panel-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .button-row {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .button-row .button {
+    flex: 1;
+  }
+
+  .markdown-editor,
+  .preview-frame-wrap,
+  .preview-frame-wrap iframe,
+  .code-preview {
+    min-height: 420px;
+  }
 }

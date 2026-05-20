@@ -2,7 +2,8 @@
 
 The `md2slides` project is a tool designed to convert Markdown content into HTML/PDF slides using Reveal.js/LaTex Beamer. 
 
-Web interface: [md2slides](http://eecslab-22.case.edu/~jxx583/project/) **(CWRU VPN REQUIRED!)**
+The current web app can run as a static site and can be deployed on Vercel.
+The original CGI/AWK implementation is still kept in `cgi-bin/convert.awk` for reference.
 
 Demo Video: [CSDS285 Project Demo, Jerry Xu](https://youtu.be/hn3GUFsApkQ)
 
@@ -34,6 +35,34 @@ The `script.js` file in the project implements several additional features, such
 ---
 
 ## To Get Started
+
+### Run locally
+
+Static preview:
+
+```bash
+npm run serve
+```
+
+Then open `http://localhost:5173`.
+
+Vercel-compatible local dev, including the optional AI endpoint:
+
+```bash
+npm run dev
+```
+
+Set `DASHSCOPE_API_KEY` or `QWEN_API_KEY` before using the AI draft endpoint.
+Without the environment variable, the browser falls back to a local outline generator.
+
+### Deploy to Vercel
+
+1. Import this repository into Vercel.
+2. Keep the default build settings; this project does not need a build step.
+3. Add `DASHSCOPE_API_KEY` or `QWEN_API_KEY` in Vercel Environment Variables if AI draft generation is needed.
+4. Deploy. `vercel.json` rewrites `/` to `project/index.html` and keeps `/api/generate-markdown` as a Serverless Function.
+
+### Use the app
 
 To quickly test the basic functionality:
 
