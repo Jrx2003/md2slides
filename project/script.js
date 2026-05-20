@@ -17,6 +17,7 @@ const els = {
   revealTheme: document.getElementById("revealTheme"),
   beamerTheme: document.getElementById("beamerTheme"),
   transition: document.getElementById("transition"),
+  accessCode: document.getElementById("accessCode"),
   aiStatus: document.getElementById("aiStatus"),
   generateMarkdown: document.getElementById("generateMarkdown"),
 };
@@ -129,9 +130,17 @@ async function generateMarkdownFromNotes() {
   setStatus("Generating markdown...");
 
   try {
+    const accessCode = els.accessCode.value.trim();
+    if (!accessCode) {
+      throw new Error("Access code is required for AI generation");
+    }
+
     const response = await fetch("/api/generate-markdown", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Access-Code": accessCode,
+      },
       body: JSON.stringify({ text: notes }),
     });
 

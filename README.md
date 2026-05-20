@@ -52,14 +52,15 @@ Vercel-compatible local dev, including the optional AI endpoint:
 npm run dev
 ```
 
-Set `DASHSCOPE_API_KEY` or `QWEN_API_KEY` before using the AI draft endpoint.
+Set `KIMI_API_KEY` or `DASHSCOPE_API_KEY` / `QWEN_API_KEY` before using the AI draft endpoint.
+Set `MD2SLIDES_ACCESS_CODE` to restrict AI generation to users with the access code.
 Without the environment variable, the browser falls back to a local outline generator.
 
 ### Deploy to Vercel
 
 1. Import this repository into Vercel.
 2. Keep the default build settings; this project does not need a build step.
-3. Add `DASHSCOPE_API_KEY` or `QWEN_API_KEY` in Vercel Environment Variables if AI draft generation is needed.
+3. Add `KIMI_API_KEY`, optional `KIMI_BASE_URL` / `KIMI_MODEL`, and `MD2SLIDES_ACCESS_CODE` in Vercel Environment Variables if AI draft generation is needed.
 4. Deploy. `vercel.json` rewrites `/` to `project/index.html` and keeps `/api/generate-markdown` as a Serverless Function.
 
 ### Use the app

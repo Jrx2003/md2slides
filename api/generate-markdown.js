@@ -6,8 +6,22 @@ module.exports = async function handler(req, res) {
   }
 
   const apiKey = process.env.DASHSCOPE_API_KEY || process.env.QWEN_API_KEY;
-  if (!apiKey) {
-    res.status(503).json({ error: "DASHSCOPE_API_KEY is not configured" });
+  const kimiApiKey = process.env.KIMI_API_KEY || process.env.MOONSHOT_API_KEY;
+  const accessCode = process.env.MD2SLIDES_ACCESS_CODE || process.env.AI_ACCESS_CODE;
+  const providedCode = req.headers["x-access-code"] || req.headers["X-Access-Code"];
+
+  if (!accessCode) {
+    res.status(503).json({ error: "AI access control is not configured" });
+    return;
+  }
+
+  if (providedCode !== accessCode) {
+    res.status(401).json({ error: "Invalid access code" });
+    return;
+  }
+
+  if (!kimiApiKey && !apiKey) {
+    res.status(503).json({ error: "AI provider is not configured" });
     return;
   }
 
@@ -18,14 +32,18 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const response = await fetch("https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions", {
+  const useKimi = Boolean(kimiApiKey);
+  const baseUrl = useKimi
+    ? (process.env.KIMI_BASE_URL || process.env.MOONSHOT_BASE_URL || "https://api.moonshot.cn/v1").replace(/\/$/, "")
+    : "https://dashscope.aliyuncs.com/compatible-mode/v1";
+  const response = await fetch(`${baseUrl}/chat/completions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
+      Authorization: `Bearer ${useKimi ? kimiApiKey : apiKey}`,
     },
     body: JSON.stringify({
-      model: process.env.QWEN_MODEL || "qwen-plus",
+      model: useKimi ? (process.env.KIMI_MODEL || "kimi-k2-turbo-preview") : (process.env.QWEN_MODEL || "qwen-plus"),
       temperature: 0.4,
       max_tokens: 1600,
       messages: [

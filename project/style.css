@@ -27,7 +27,8 @@ body {
 
 button,
 textarea,
-select {
+select,
+input {
   font: inherit;
 }
 
@@ -275,6 +276,16 @@ select {
   padding: 10px;
   font-size: 13px;
   line-height: 1.5;
+}
+
+.access-input {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  background: #ffffff;
+  padding: 8px 10px;
 }
 
 .status-line.error {
