@@ -1,15 +1,12 @@
-# Documentation for `md2slides` Project
+# md2slides
 
-The `md2slides` project is a tool designed to convert Markdown content into HTML/PDF slides using Reveal.js/LaTex Beamer. 
+`md2slides` converts Markdown into Reveal.js slides or LaTeX Beamer source through a clean browser-based workspace.
 
-The current web app can run as a static site and can be deployed on Vercel.
-The original CGI/AWK implementation is still kept in `cgi-bin/convert.awk` for reference.
+Live app: [https://md2slides-rouge.vercel.app](https://md2slides-rouge.vercel.app)
 
-Demo Video: [CSDS285 Project Demo, Jerry Xu](https://youtu.be/hn3GUFsApkQ)
+GitHub repository: [https://github.com/Jrx2003/md2slides](https://github.com/Jrx2003/md2slides)
 
-GitHub Repository: [md2slides](https://github.com/Jrx2003/md2slides)
-
-**You can also read this README file in the GitHub repository for better formatting.**
+The original CGI/AWK implementation is still kept in `cgi-bin/convert.awk` for course/reference purposes, while the public app now runs on Vercel with a static frontend and an optional Serverless AI endpoint.
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
@@ -26,11 +23,15 @@ GitHub Repository: [md2slides](https://github.com/Jrx2003/md2slides)
 
 ## Project Overview
 
-This project, markdown to slides, is a convenient tool that lets you generate slides using simple markdown. If you ever receive an urgent task that requires you to prepare a presentation in five minutes, you should give this a try. If you're tired of having GPT generate slide content and then painstakingly copying and formatting it in PowerPoint, you should try this. And if you want clean, themed slides without having to learn the complex syntax of reveal.js or LaTeX Beamer, then this is definitely for you.
+This project is a convenient tool for turning Markdown into presentation assets without hand-formatting PowerPoint decks. It is useful when you need a quick working slide draft, want a clean Reveal.js deck, or need Beamer source that can be pasted into Overleaf.
 
-The goal of this project is to create a script that can quickly generate slides from Markdown files, with convenient keyboard shortcuts to select themes and animations. The core of this functionality lies in the `convert.awk` file within the project, which process and adjust Markdown text to make it compatible with both **Reveal.js** and **LaTeX Beamer** formats. Users can input Markdown text, choose formats, select themes and animations through `index.html`. This information is sent to `convert.awk` via the POST method, making it more intuitive and straightforward to personalize their slides. This part of the project also best reflects the skills I’ve gained in the **CSDS285** course regarding scripting languages.
+The current interface is a three-panel workspace:
 
-The `script.js` file in the project implements several additional features, such as inserting sample input with a button click. For users who are not familiar with Markdown, I referred to the documentation of LLM **Qwen-Plus** and integrated its API to help generate compliant Markdown documents for testing. This makes the project much more beginner-friendly, even though this part is not a requirement for CSDS285 nor the main focus of the project.
+- **Source**: edit Markdown and see slide/word counts.
+- **Output**: switch between Reveal.js and Beamer, select themes, and configure transitions.
+- **Preview**: view the generated deck, copy the output, download it, or open it in a new tab.
+
+For users who start from rough notes instead of Markdown, the app includes an optional AI draft feature. The AI endpoint runs on Vercel Serverless Functions, uses an access code, and reads provider credentials from environment variables instead of exposing API keys in the browser.
 
 ---
 
@@ -52,30 +53,33 @@ Vercel-compatible local dev, including the optional AI endpoint:
 npm run dev
 ```
 
-Set `KIMI_API_KEY` or `DASHSCOPE_API_KEY` / `QWEN_API_KEY` before using the AI draft endpoint.
+Set `KIMI_API_KEY` before using the AI draft endpoint. `DASHSCOPE_API_KEY` or `QWEN_API_KEY` are still supported as fallbacks.
 Set `MD2SLIDES_ACCESS_CODE` to restrict AI generation to users with the access code.
 Without the environment variable, the browser falls back to a local outline generator.
 
 ### Deploy to Vercel
 
-1. Import this repository into Vercel.
+1. Import this repository into Vercel or deploy from the Vercel CLI.
 2. Keep the default build settings; this project does not need a build step.
 3. Add `KIMI_API_KEY`, optional `KIMI_BASE_URL` / `KIMI_MODEL`, and `MD2SLIDES_ACCESS_CODE` in Vercel Environment Variables if AI draft generation is needed.
 4. Deploy. `vercel.json` rewrites `/` to `project/index.html` and keeps `/api/generate-markdown` as a Serverless Function.
 
 ### Use the app
 
-To quickly test the basic functionality:
+To quickly test the core workflow:
 
-1. Click **"Use Sample Markdown"**
-2. Select your preferred **theme** and **animation**
-3. Click **"Generate Slides"**
+1. Open the live app or run it locally.
+2. Edit the Markdown in the **Source** panel or click **Sample**.
+3. Select **Reveal.js** or **Beamer** in the **Output** panel.
+4. Adjust the Reveal theme/transition or Beamer theme.
+5. Use **Copy**, **Download**, or **Open** from the **Preview** panel.
 
-To try out the **AI assistant feature**:
+To try the AI draft feature:
 
-1. Click **"Use Sample Text"**
-2. Click **"Generate Markdown"**
-3. Finally, click **"Generate Slides"**
+1. Paste rough notes into **AI draft**, or click **Sample notes**.
+2. Enter the access code provided by the maintainer.
+3. Click **Generate**. If the access code or provider configuration is missing, the app falls back to a local outline generator.
+4. Review the generated Markdown in the **Source** panel before exporting.
 
 **When entering your own markdown input, please follow the placeholder instructions to ensure correct formatting:**
 
@@ -102,7 +106,7 @@ To try out the **AI assistant feature**:
 7. **Plain Text**:  
    Any plain text will be displayed as-is on the slide.
 
-There is no formatting requirement for the AI assistant text input. You can enter any text, and it will be converted to Markdown format automatically. The generated Markdown may be different each time, but it will always be compliant with the requirements of the `convert.awk` file.
+There is no strict formatting requirement for AI draft notes. The generated Markdown may vary, so review it before using the output in a client-facing deck.
 
 ---
 
@@ -216,50 +220,63 @@ These limitations are intentional to maintain the simplicity and ease of use of 
 
 ```
 md2slides
-├── README.md          # Project documentation (this file)
+├── README.md
+├── api
+│   ├── generate-markdown.js # Optional AI draft Serverless Function
 ├── cgi-bin
-│   ├── convert.awk    # Core script for Markdown to HTML slide conversion
+│   ├── convert.awk          # Original CGI/AWK converter retained for reference
+├── package.json
 ├── project
-│   ├── index.html     # Main entry point for the web interface
-│   ├── sample_md.md   # Sample Markdown file for testing
-│   ├── sample_pic.jpg # Sample image used in the project
-│   ├── sample_text.txt# Sample text file for reference
-│   ├── script.js      # JavaScript file for additional functionality
-│   ├── style.css      # CSS file for custom styling
+│   ├── index.html           # Web app shell
+│   ├── sample_md.md         # Sample Markdown file for testing
+│   ├── sample_pic.jpg       # Sample image used in the project
+│   ├── sample_text.txt      # Sample notes for AI draft testing
+│   ├── script.js            # Client-side conversion and preview logic
+│   ├── style.css            # Responsive workspace styling
+├── vercel.json
 ```
 
 ## Important File Descriptions
 
-### 1. `cgi-bin/convert.awk`
-
-- A core script written in `awk` that processes HTTP requests.
-- Converts user-submitted Markdown content into HTML slides (Reveal.js) or .tex file (Beamer).
-- Features:
-  - Parses HTTP parameters and decodes URL-encoded data.
-  - Supports themes and animations for slides.
-  - Outputs HTML with embedded Markdown for Reveal.js to render.
-
-### 2. `project/index.html`
+### 1. `project/index.html`
 
 - The main HTML file for the web interface.
-- Likely serves as the front-end for users to upload Markdown files or input content directly.
+- Defines the Source, Output, AI draft, and Preview panels.
 
-### 3. `project/script.js`
+### 2. `project/script.js`
 
-- Includes functions to insert sample Markdown or text into the input area.
-- Implements the AI assistant feature to generate compliant Markdown documents.
+- Runs the client-side Markdown conversion workflow.
+- Builds Reveal.js HTML directly in the browser.
+- Builds LaTeX Beamer source directly in the browser.
+- Handles sample content, live preview, copy, download, open-in-new-tab, and AI draft calls.
 
-### 4. `project/sample_md.md` (4-6 can be changed based on your preference)
+### 3. `project/style.css`
+
+- Defines the responsive three-panel application layout.
+- Keeps the tool usable on both desktop and mobile screens.
+
+### 4. `api/generate-markdown.js`
+
+- Optional Vercel Serverless Function for AI-assisted Markdown generation.
+- Requires `MD2SLIDES_ACCESS_CODE` and an access code sent by the user.
+- Uses Kimi credentials from environment variables, with Qwen/DashScope fallback support.
+
+### 5. `cgi-bin/convert.awk`
+
+- Original CGI/AWK script retained for reference.
+- Parses HTTP parameters and converts Markdown to Reveal.js HTML or LaTeX Beamer source.
+
+### 6. `project/sample_md.md`
 
 - A sample Markdown file provided for testing the conversion functionality.
 - Can be used as an example to understand the expected input format.
 
-### 5. `project/sample_pic.jpg`
+### 7. `project/sample_pic.jpg`
 
 - A sample image file included in the project.
 - May be used for testing image embedding in slides or as part of the web interface.
 
-### 6. `project/sample_text.txt`
+### 8. `project/sample_text.txt`
 
 - A sample plain text file for reference or testing purposes.
 
@@ -267,10 +284,12 @@ md2slides
 
 ## Usage Instructions
 
-1. Deploy the `cgi-bin/convert.awk` script on a CGI-enabled server (e.g., Apache or Nginx).
-2. Use the `index.html` file as the front-end for submitting Markdown content.
-3. Test the functionality using the provided sample files (`sample_md.md`, `sample_pic.jpg`, etc.).
-4. The server will process the Markdown input and return HTML slides styled with Reveal.js.
+1. Open [https://md2slides-rouge.vercel.app](https://md2slides-rouge.vercel.app).
+2. Write Markdown in the Source panel. Use `---` on its own line to split slides.
+3. Choose Reveal.js or Beamer output.
+4. For Reveal.js, use the live iframe preview and open/download the generated HTML.
+5. For Beamer, copy or download the generated `.tex` source and compile it in a LaTeX environment such as Overleaf.
+6. Use AI draft only if you have the maintainer-provided access code.
 
 ---
 
